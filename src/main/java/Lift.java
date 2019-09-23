@@ -24,9 +24,6 @@ public class Lift {
         passengersInLift = new ArrayList<>();
     }
 
-    /**
-     * Lift's main cyckle.
-     */
     public void doJob() {
         while (areThereAnyPassengersToTransport()) {
             redefineDirection();
@@ -103,6 +100,7 @@ public class Lift {
             if (passenger.getInitialStage() == currentStage && passenger.getDesireDirection() == currentDirection) {
                 iter.remove();
                 passengersInLift.add(passenger);
+                doDelay(MILLIS_IN_A_SECOND * 3);
                 System.out.println(String.format("Пассажир c параметрами: %s вошел в лифт", passenger));
             }
         }
@@ -114,6 +112,7 @@ public class Lift {
             Passenger passenger = iter.next();
             if (passenger.getTargetStage() == currentStage) {
                 iter.remove();
+                doDelay(MILLIS_IN_A_SECOND * 3);
                 System.out.println(String.format("Пассажир c параметрами: %s вышел из лифта", passenger));
             }
         }
@@ -121,6 +120,7 @@ public class Lift {
 
     private void moveForOneStage() {
         System.out.println(String.format("Лифт проезжает %d этаж, направление: %s", currentStage, currentDirection));
+        doDelay(Building.STAGE_HEIGHT * MILLIS_IN_A_SECOND);
         currentStage = currentDirection == Direction.UP
                 ? ++currentStage
                 : --currentStage;
@@ -150,10 +150,12 @@ public class Lift {
     }
 
     private void closeDoors() {
+        doDelay(MILLIS_IN_A_SECOND);
         System.out.println("Двери закрылись");
     }
 
     private void openDoors() {
+        doDelay(MILLIS_IN_A_SECOND);
         System.out.println("Двери открылись");
     }
 
@@ -165,7 +167,7 @@ public class Lift {
         System.out.println(String.format("Лифт остановился на %d этаже", currentStage));
     }
 
-    public void addDelay(int millis) {
+    public void doDelay(int millis) {
         try {
             Thread.sleep(millis);
         } catch (InterruptedException e) {
