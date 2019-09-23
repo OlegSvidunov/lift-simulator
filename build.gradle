@@ -12,6 +12,12 @@ repositories {
     mavenCentral()
 }
 
+test {
+    testLogging {
+        showStandardStreams = true
+    }
+}
+
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
     compileOnly 'org.projectlombok:lombok:1.18.10'
