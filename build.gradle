@@ -12,6 +12,11 @@ repositories {
     mavenCentral()
 }
 
+wrapper {
+    gradleVersion = '5.2.1'
+    distributionUrl = distributionUrl.replace("bin", "all")
+}
+
 test {
     testLogging {
         showStandardStreams = true
