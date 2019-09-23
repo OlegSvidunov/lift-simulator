@@ -19,7 +19,7 @@ public class LiftTest {
     }
 
     @Test
-    public void mainTest() {
+    public void testLiftJob() {
         lift.doJob();
     }
 }
