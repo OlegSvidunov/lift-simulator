@@ -16,7 +16,6 @@ public class Lift {
     private List<Passenger> passengersInLift;
 
     public Lift(Building building) {
-        isStopped = false;
         this.building = building;
         this.currentStage = Building.FIRST_STAGE;
         this.currentDirection = Direction.UP;
